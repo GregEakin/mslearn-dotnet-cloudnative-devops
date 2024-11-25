@@ -3,6 +3,8 @@ using Store.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 var productEndpoint = builder.Configuration["ProductEndpoint"]
                       ?? throw new InvalidOperationException("ProductEndpoint is not set");
 
@@ -14,6 +16,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
